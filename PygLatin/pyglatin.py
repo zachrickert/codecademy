@@ -17,8 +17,11 @@ def main():
     print ('Welcome to the Pig Latin Translator!')
     original = input("Enter a word: ")
 
+    pyg = "ay"
+
     if len(original) > 0 and original.isalpha():
-        print (original)
+        word = original.lower()
+        first = word[0]
     else:
         print ("empty")
 
