@@ -14,18 +14,12 @@ def hotel_cost(nights):
 def plane_ride_cost(city):
     """Return the airfare for the trip."""
     city = city.lower()
-    if city == "charlotte":
-        plane_cost = 183.0
-    elif city == "tampa":
-        plane_cost = 220.0
-    elif city == "pittsburgh":
-        plane_cost = 222.0
-    elif city == "los angeles":
-        plane_cost = 475.0
-    else:
-        plane_cost = -1
+    cost = {'charlotte': 183.0,
+            'tampa': 222.0,
+            'pittsburgh': 222.0,
+            'los angeles': 475.0}
 
-    return plane_cost
+    return cost[city]
 
 
 def rental_car_cost(days):
@@ -39,7 +33,7 @@ def rental_car_cost(days):
     return car_cost
 
 
-def trip_cost(city, days, spending_money):
+def trip_cost(city, days, spending_money=0):
     """Calculate the total vacation cost."""
     total = (hotel_cost(days) +
              plane_ride_cost(city) +
