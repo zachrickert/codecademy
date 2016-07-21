@@ -47,3 +47,6 @@ def trip_cost(city, days, spending_money):
              spending_money)
 
     return total
+
+
+print (trip_cost("Los Angeles", 5, 600))
