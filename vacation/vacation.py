@@ -37,3 +37,8 @@ def rental_car_cost(days):
         car_cost = car_cost - 20.0
 
     return car_cost
+
+
+def trip_cost(city, days):
+    """Calculate the total vacation cost."""
+    return hotel_cost(days) + plane_ride_cost(city) + rental_car_cost(days)
