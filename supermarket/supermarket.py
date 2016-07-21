@@ -19,4 +19,14 @@ def dictionary():
     for entry in webster:
         print (webster[entry])
 
-dictionary()
+
+def print_evens():
+    """Print out even numbers from a string."""
+    a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+
+    for x in a:
+        if(x % 2 == 0):
+            print(x)
+
+
+print_evens()
