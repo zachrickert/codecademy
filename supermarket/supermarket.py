@@ -29,4 +29,14 @@ def print_evens():
             print(x)
 
 
+def fizz_count(x):
+    """Count the number of times the word fizz occures in a list."""
+    count = 0
+    for item in x:
+        if item == "fizz":
+            count = count + 1
+
+    return count
+
+
 print_evens()
