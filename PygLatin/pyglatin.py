@@ -12,4 +12,11 @@ Here are the steps to write a Pig Latin translator in Python:
 """
 
 
-print ('Pig Latin')
+def main():
+    """A Pig Latin Translator."""
+    print ('Welcome to the Pig Latin Translator!')
+
+    original = input("Enter a word: ")
+
+
+main
