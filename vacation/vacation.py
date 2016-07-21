@@ -26,3 +26,14 @@ def plane_ride_cost(city):
         plane_cost = -1
 
     return plane_cost
+
+
+def rental_car_cost(days):
+    """Calculate the cost of a retal car."""
+    car_cost = 40.0 * days
+    if days >= 7:
+        car_cost = car_cost - 50.0
+    elif days >= 3:
+        car_cost = car_cost - 20.0
+
+    return car_cost
