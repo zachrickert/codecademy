@@ -1,6 +1,14 @@
 """A program for the supermarket."""
 
 
+def supermarket():
+    """A program for the supermarket."""
+    prices = {"banana": 4,
+              "apple": 2,
+              "orange": 1.5,
+              "pear": 3}
+
+
 def names():
     """Function to loop through a series of names."""
     names = ["Adam", "Alex", "Mariah", "Martine", "Columbus"]
