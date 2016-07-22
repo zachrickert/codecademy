@@ -3,6 +3,8 @@
 
 def supermarket():
     """A program for the supermarket."""
+    sell_all_total = 0
+
     prices = {"banana": 4,
               "apple": 2,
               "orange": 1.5,
@@ -18,6 +20,9 @@ def supermarket():
         print ("price: {}".format(prices[item]))
         print ("stock: {}".format(stock[item]))
         print()
+        sell_all_total += (prices[item] * stock[item])
+
+    print(sell_all_total)
 
 
 def names():
