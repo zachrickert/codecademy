@@ -1,6 +1,11 @@
 """A program for the supermarket."""
 
 
+def shopper():
+    """A program for on-line shopping"""
+    groceries = ["banana", "orange", "apple"]
+
+
 def supermarket():
     """A program for the supermarket."""
     sell_all_total = 0
