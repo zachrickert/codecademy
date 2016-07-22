@@ -13,6 +13,13 @@ def supermarket():
              "orange": 32,
              "pear": 15}
 
+    for item in prices:
+        print (item)
+        print ("price: {}".format(prices[item]))
+        print ("stock: {}".format(stock[item]))
+        print()
+
+
 def names():
     """Function to loop through a series of names."""
     names = ["Adam", "Alex", "Mariah", "Martine", "Columbus"]
@@ -51,4 +58,4 @@ def fizz_count(x):
     return count
 
 
-print_evens()
+supermarket()
