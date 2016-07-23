@@ -33,7 +33,9 @@ def compute_bill(food):
     """Compute a grocrey bill given a list of food items."""
     total = 0
     for item in food:
-        total += prices[item]
+        if stock[item] > 0:
+            total += prices[item]
+            stock[item] -= 1
 
     return total
 
