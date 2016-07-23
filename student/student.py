@@ -26,6 +26,8 @@ def main():
         print("  quizzes: {}".format(student["quizzes"]))
         print("  tests: {}".format(student["tests"]))
 
+    print(get_letter_grade(get_average(lloyd)))
+
 
 def average(numbers):
     """Find the mean of a list of numbers."""
@@ -40,6 +42,23 @@ def get_average(student):
     ts = average(student["tests"])
 
     return 0.1 * hw + 0.3 * qz + 0.6 * ts
+
+
+def get_letter_grade(score):
+    """Return a letter grade for a provided percent score."""
+    grade = "*"
+    if score >= 90:
+        grade = "A"
+    elif score >= 80:
+        grade = "B"
+    elif score >= 70:
+        grade = "C"
+    elif score >= 60:
+        grade = "D"
+    else:
+        grade = "F"
+
+    return grade
 
 
 main()
