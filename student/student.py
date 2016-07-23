@@ -27,4 +27,10 @@ def main():
         print("  tests: {}".format(student["tests"]))
 
 
+def average(numbers):
+    """Find the mean of a list of numbers."""
+    total = float(sum(numbers))
+    return total / float(len(numbers))
+
+
 main()
