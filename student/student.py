@@ -33,4 +33,13 @@ def average(numbers):
     return total / float(len(numbers))
 
 
+def get_average(student):
+    """Find the weighted average of hw(10%), quizzes(30%) and tests(60%)."""
+    hw = average(student["homework"])
+    qz = average(student["quizzes"])
+    ts = average(student["tests"])
+
+    return 0.1 * hw + 0.3 * qz + 0.6 * ts
+
+
 main()
