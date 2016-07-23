@@ -19,3 +19,12 @@ def main():
              "tests": [100.0, 100.0]}
 
     students = [lloyd, alice, tyler]
+
+    for student in students:
+        print(student["name"])
+        print("  homework: {}".format(student["homework"]))
+        print("  quizzes: {}".format(student["quizzes"]))
+        print("  tests: {}".format(student["tests"]))
+
+
+main()
