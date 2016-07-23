@@ -1,24 +1,21 @@
 """A program for the supermarket."""
 
+prices = {"banana": 4,
+          "apple": 2,
+          "orange": 1.5,
+          "pear": 3}
 
-def shopper():
-    """A program for on-line shopping"""
-    groceries = ["banana", "orange", "apple"]
+stock = {"banana": 6,
+         "apple": 0,
+         "orange": 32,
+         "pear": 15}
 
 
 def supermarket():
     """A program for the supermarket."""
     sell_all_total = 0
 
-    prices = {"banana": 4,
-              "apple": 2,
-              "orange": 1.5,
-              "pear": 3}
-
-    stock = {"banana": 6,
-             "apple": 0,
-             "orange": 32,
-             "pear": 15}
+    groceries = ["banana", "orange", "apple"]
 
     for item in prices:
         print (item)
@@ -28,6 +25,17 @@ def supermarket():
         sell_all_total += (prices[item] * stock[item])
 
     print(sell_all_total)
+
+    print(compute_bill(groceries))
+
+
+def compute_bill(food):
+    """Compute a grocrey bill given a list of food items."""
+    total = 0
+    for item in food:
+        total += prices[item]
+
+    return total
 
 
 def names():
