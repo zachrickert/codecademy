@@ -23,6 +23,8 @@ def main():
     else:
         if (guess_row >= len(board) or guess_col >= len(board)):
             print("Oops, that's not even in the ocean.")
+        elif (board[guess_row][guess_col] == 'X'):
+            print("You guessed that one already.")
         else:
             print ("You missed my battleship!")
             board[guess_row][guess_col] = 'X'
