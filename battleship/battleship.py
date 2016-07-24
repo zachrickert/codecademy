@@ -18,6 +18,14 @@ def main():
     guess_row = int(input("Guess Row: "))
     guess_col = int(input("Guess Col: "))
 
+    if (guess_row == ship_row and guess_col == ship_col):
+        print ("Congratulations! You sank my battleship!")
+    else:
+        print ("You missed my battleship!")
+        board[guess_row][guess_col] = 'X'
+
+    print_board(board)
+
 
 def print_board(board):
     """Print the game grid."""
