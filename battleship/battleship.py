@@ -12,6 +12,12 @@ def main():
 
     print_board(board)
 
+    ship_row = random_row(board)
+    ship_col = random_col(board)
+
+    guess_row = int(input("Guess Row: "))
+    guess_col = int(input("Guess Col: "))
+
 
 def print_board(board):
     """Print the game grid."""
