@@ -4,7 +4,7 @@ from random import randint
 
 
 ROWS = 5
-COLUMNS = 10
+COLUMNS = 5
 TURNS = 4
 
 
@@ -15,15 +15,15 @@ def main():
 
     ship_row = random_row(board)
     ship_col = random_col(board)
-    print(ship_row, ship_col)
 
     for turn in range(1, TURNS + 1):
         print('\n\n')
         print('Guess #{} out of {}'.format(turn, TURNS))
         print('=' * 20)
         print_board(board)
-        guess_row = int(input("Guess Row: "))
-        guess_col = int(input("Guess Col: "))
+        guess_row = input("Guess Row (A - {}): ".format(numb_to_let(ROWS)))
+        guess_row = let_to_numb(guess_row) - 1
+        guess_col = int(input("Guess Col (1 - {}): ".format(COLUMNS))) - 1
 
         if (guess_row == ship_row and guess_col == ship_col):
             print ("Congratulations! You sank my battleship!")
@@ -48,7 +48,14 @@ def set_board(board):
 
 def print_board(board):
     """Print the game grid."""
-    for row in board:
+    print("    ", end="")
+    for column_number in range(COLUMNS):
+        print ("{} ".format(column_number + 1), end="")
+    print()
+    print("    ", end="")
+    print('-' * (1 + column_number * 2))
+    for row_number, row in enumerate(board):
+        print("{} | ".format(numb_to_let(row_number + 1)), end="")
         print (" ".join(row))
 
 
@@ -61,5 +68,14 @@ def random_col(board):
     """Return a random column."""
     return randint(0, COLUMNS - 1)
 
+
+def numb_to_let(numb):
+    """Change a number into a letter."""
+    return chr(numb + 64)
+
+
+def let_to_numb(str):
+    """Change letter to number."""
+    return ord(str.upper()) - 64
 
 main()
