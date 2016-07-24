@@ -26,7 +26,9 @@ def main():
         print("  quizzes: {}".format(student["quizzes"]))
         print("  tests: {}".format(student["tests"]))
 
-    print(get_letter_grade(get_average(lloyd)))
+    class_average = get_class_average(students)
+    print('\nClass Average: {} {}'.format(class_average,
+                                          get_letter_grade(class_average)))
 
 
 def average(numbers):
@@ -60,5 +62,14 @@ def get_letter_grade(score):
 
     return grade
 
+
+def get_class_average(students):
+    """Calculate the class average."""
+    results = []
+
+    for student in students:
+        results.append(get_average(student))
+
+    return average(results)
 
 main()
