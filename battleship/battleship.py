@@ -4,7 +4,7 @@ from random import randint
 
 
 ROWS = 5
-COLUMNS = 5
+COLUMNS = 12
 TURNS = 4
 
 
@@ -47,6 +47,31 @@ def set_board(board):
 
 
 def print_board(board):
+    """Print the game grid."""
+    for row in range(-2, ROWS):
+        for column in range(COLUMNS):
+            if column + 1 < 10:
+                whitespace = 2
+            else:
+                whitespace = 1
+            if row == -2:
+                if column == 0:
+                    print("    ", end="")
+                print ("{}{}".format(column + 1, " " * whitespace), end="")
+            elif row == -1:
+                if column == 0:
+                    print("   ", end="")
+                print("{}".format("-" * 3), end="")
+            else:
+                if column == 0:
+                    print("{} | ".format(numb_to_let(row + 1)), end="")
+
+                print("{}{}".format(board[row][column], "  "), end="")
+        if column == COLUMNS - 1:
+            print()
+
+
+def print_board_old(board):
     """Print the game grid."""
     print("    ", end="")
     for column_number in range(COLUMNS):
