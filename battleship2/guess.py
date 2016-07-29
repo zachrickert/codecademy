@@ -2,13 +2,13 @@
 
 
 class Guess():
-    "Turn a guess into a row and column."""
+    """Turn a guess into a row and column."""
 
     def __init__(self, input_value):
         """Turn a guess into a row and column."""
         self.row = input_value[0]
-        self.row = let_to_numb(self.row)
-        self.column = int(input_value[1:])
+        self.row = let_to_numb(self.row) - 1
+        self.column = int(input_value[1:]) - 1
 
 
 def let_to_numb(str):

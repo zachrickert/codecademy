@@ -21,20 +21,59 @@ class Ship():
 
     def set_location(self, board):
         """Set location for a ship on the board."""
+        location = self.location_input(board)
+        if self.check_for_ships(board, location):
+            self.place_ship(board, location)
+
+    def location_input(self, board):
+        """Gather the starting location of the ship."""
+        print (board)
         start = input("Please input the upper left corner of the ship: ")
         start = Guess(start)
         if start.row > board.rows - self.length:
-            if start.column > board.column - self.length:
-                print("Sorry you cannot put your ship there.  Part is off the map.")
+            if start.column > board.columns - self.length:
+                print("Sorry, your ship is off the map.")
+                self.set_location(board)
             else:
-                pass
-                # set(start, "v")
+                direction = 'v'
         else:
-            if start.column > board.column - self.length:
-                pass
-                # set(start, "h")
+            if start.column > board.columns - self.length:
+                direction = 'h'
             else:
-                direction = input("Do you want the ship to go (v)ertical or (h)orizontal?")
+                direction = ""
+                while not (direction == 'v' or direction == 'h'):
+                    direction = input("(v)ertical or (h)orizontal?")
+                    direction = direction.lower()
+        return (start, direction)
+
+    def check_for_ships(self, board, location):
+        """Check for other ships already placed."""
+        print (board.status[location[0].row][location[0].column])
+        if location[1] == 'v':
+            for i in range(self.length):
+                if(board.status[location[0].row][location[0].column + i] != 'O'):
+                    return False
+
+        elif location[1] == 'h':
+            for i in range(self.length):
+                if(board.status[location[0].row + i][location[0].column] != 'O'):
+                    return False
+
+        else:
+            print('GAME ERROR')
+            return False
+
+        return True
+
+    def place_ship(self, board, location):
+        """Place ship."""
+        if location[1] == 'v':
+            for i in range(self.length):
+                board.status[location[0].row][location[0].column + i] = self.letter
+
+        if location[1] == 'h':
+            for i in range(self.length):
+                board.status[location[0].row + i][location[0].column] = self.letter
 
 
 class Battleship(Ship):

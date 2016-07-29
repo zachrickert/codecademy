@@ -21,7 +21,7 @@ class Board():
 
     def print_board(self):
         """Print the current status of the game."""
-        print("{}'s board".format(self.name).center((self.columns * 3) + 4))
+        # print("{}'s board".format(self.name).center((self.columns * 3) + 4))
         for row in range(-2, self.rows):
             for column in range(self.columns):
                 if column + 1 < 10:
