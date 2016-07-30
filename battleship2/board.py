@@ -1,4 +1,5 @@
 """Board class for the battleship game."""
+import functions
 
 
 class Board():
@@ -21,7 +22,6 @@ class Board():
 
     def print_board(self):
         """Print the current status of the game."""
-        # print("{}'s board".format(self.name).center((self.columns * 3) + 4))
         for row in range(-2, self.rows):
             for column in range(self.columns):
                 if column + 1 < 10:
@@ -38,14 +38,10 @@ class Board():
                     print("{}".format("-" * 3), end="")
                 else:
                     if column == 0:
-                        print("{} | ".format(numb_to_let(row + 1)), end="")
+                        letter = functions.numb_to_let(row + 1)
+                        print("{} | ".format(letter), end="")
 
                     print("{}{}".format(self.status[row][column], "  "),
                           end="")
             if column == self.columns - 1:
                 print()
-
-
-def numb_to_let(numb):
-    """Change a number into a letter."""
-    return chr(numb + 64)

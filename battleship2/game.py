@@ -38,4 +38,3 @@ class Game():
 
 
 myGame = Game()
-# print(myGame.user_fleet)

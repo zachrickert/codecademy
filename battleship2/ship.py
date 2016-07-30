@@ -1,4 +1,5 @@
 """Ship class for the battleship game."""
+import functions
 
 from guess import Guess
 
@@ -30,6 +31,7 @@ class Ship():
 
     def location_input(self, board):
         """Gather the starting location of the ship."""
+        functions.clear()
         print (board)
         print("Place your {} - length {}.".format(self.name, self.length))
         start = input("Please input the upper left corner of the ship: ")
@@ -79,6 +81,7 @@ class Ship():
                 column = location[0].column + i
 
             board.status[row][column] = self.letter
+        functions.clear()
         print(board)
         answer = ""
         while not (answer == 'y' or answer == 'n'):
