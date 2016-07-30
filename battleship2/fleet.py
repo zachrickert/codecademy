@@ -11,7 +11,9 @@ class Fleet ():
         self.sunk = False
         self.ships = []
         battleship = ship.Battleship()
+        submarine = ship.Submarine()
         self.ships.append(battleship)
+        self.ships.append(submarine)
 
     def __str__(self):
         """Print Fleet status."""

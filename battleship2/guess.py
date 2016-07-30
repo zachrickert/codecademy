@@ -1,4 +1,4 @@
-"""Class module to handle guesses.  Translates C4 -> (3, 4)."""
+"""Class module to handle guesses.  Translates C4 -> (2, 3)."""
 
 
 class Guess():

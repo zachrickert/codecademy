@@ -33,10 +33,9 @@ class Game():
     def print_game_status(self):
         """Print the current game status."""
         print(myGame.user_board)
-        print('=' * myGame.user_board.columns * 2)
+        print('=' * myGame.user_board.columns * 3)
         print(myGame.computer_board)
 
 
 myGame = Game()
-print(myGame.user_fleet)
-print(myGame)
+# print(myGame.user_fleet)
