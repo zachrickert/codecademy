@@ -29,3 +29,8 @@ class Fleet ():
         """Set up fleet."""
         for piece in self.ships:
             piece.set_location(board)
+
+    def set_fleet_auto(self, board):
+        """Set up fleet automatically."""
+        for piece in self.ships:
+            piece.set_location_auto(board)

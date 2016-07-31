@@ -24,6 +24,8 @@ class Game():
         self.computer_board = Board("Computer")
         self.user_fleet = Fleet()
         self.user_fleet.set_fleet(self.user_board)
+        self.computer_fleet = Fleet()
+        self.computer_fleet.set_fleet_auto(self.computer_board)
 
     def __str__(self):
         """Print the current game status."""
@@ -33,8 +35,9 @@ class Game():
     def print_game_status(self):
         """Print the current game status."""
         print(myGame.user_board)
-        print('=' * myGame.user_board.columns * 3)
+        print('=' * myGame.user_board.columns * 4)
         print(myGame.computer_board)
 
 
 myGame = Game()
+print(myGame)

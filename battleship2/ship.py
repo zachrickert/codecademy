@@ -29,6 +29,38 @@ class Ship():
             print ('Sorry, that would cause your ships to overlap.')
             self.set_location(board)
 
+    def set_location_auto(self, board):
+        """Automatically sets the location of the ships."""
+        location = self.location_input_auto(board)
+        if self.check_for_ships(board, location):
+            self.place_ship(board, location)
+        else:
+            self.set_location(board)
+
+    def location_input_auto(self, board):
+        """Randomize the location of the ships."""
+        import random
+
+        row = random.randint(1, board.rows)
+        column = random.randint(1, board.columns)
+        start = Guess(functions.numb_to_let(row) + str(column))
+
+        if row > board.rows - self.length:
+            if column > board.columns - self.length:
+                self.set_location_auto(board)
+            else:
+                direction = 'h'
+        else:
+            if column > board.columns - self.length:
+                direction = 'v'
+            else:
+                if random.random() > 0.5:
+                    direction = 'h'
+                else:
+                    direction = 'v'
+
+        return (start, direction)
+
     def location_input(self, board):
         """Gather the starting location of the ship."""
         functions.clear()
@@ -39,7 +71,7 @@ class Ship():
         if start.row > board.rows - self.length:
             if start.column > board.columns - self.length:
                 print("Sorry, your ship is off the map.")
-                self.set_location(board)
+                start, direction = self.location_input(board)
             else:
                 direction = 'h'
         else:
@@ -81,9 +113,14 @@ class Ship():
                 column = location[0].column + i
 
             board.status[row][column] = self.letter
-        functions.clear()
-        print(board)
-        answer = ""
+
+        if board.name == "Computer":
+            answer = "y"
+        else:
+            functions.clear()
+            print(board)
+            answer = ""
+
         while not (answer == 'y' or answer == 'n'):
             answer = input("Place ship here (y/n)? ")
 
