@@ -15,3 +15,7 @@ class Guess():
     def __str__(self):
         """Print the cell refernece for the guess."""
         return self.input_value
+
+    def position(self):
+        """Return the cell reference for the guess."""
+        return self.input_value

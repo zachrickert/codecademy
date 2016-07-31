@@ -41,3 +41,4 @@ class Game():
 
 myGame = Game()
 print(myGame)
+print(myGame.user_fleet)

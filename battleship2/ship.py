@@ -17,7 +17,10 @@ class Ship():
 
     def __str__(self):
         """Print ship type and damage."""
-        str = "{} - [{}]".format(self.name, " ".join(self.damage))
+        total_damage = ""
+        for i in range(self.length):
+            total_damage = total_damage + " " + (self.damage[i].position())
+        str = "{} - [{}]".format(self.name, total_damage)
         return str
 
     def set_location(self, board):
@@ -47,7 +50,7 @@ class Ship():
 
         if row > board.rows - self.length:
             if column > board.columns - self.length:
-                self.set_location_auto(board)
+                start, direction = self.location_input_auto(board)
             else:
                 direction = 'h'
         else:
@@ -113,6 +116,9 @@ class Ship():
                 column = location[0].column + i
 
             board.status[row][column] = self.letter
+            current_position = functions.rc_to_str(row, column)
+            self.damage[i] = Guess(current_position)
+            # print(row, column, current_position, self.damage[i])
 
         if board.name == "Computer":
             answer = "y"
