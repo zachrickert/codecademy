@@ -53,7 +53,8 @@ class Game():
                                              self.guess_board,
                                              self.computer_fleet)
             turn_count += 1
-            if turn_count >= 100:
+            if self.computer_fleet.all_ships_sank():
+                print("Congratulations you won!")
                 self.done = True
 
 myGame = Game()

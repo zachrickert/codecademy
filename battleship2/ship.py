@@ -148,14 +148,17 @@ class Ship():
         """Set damage on ships."""
         if guess in self.damage:
             self.damage[self.damage.index(guess)].damage = functions.HIT
-            print ('Damage taken!')
-        print(self)
-        print(self.damage)
-        print(guess)
+            if self.ship_sunk():
+                self.sank = True
+                guess_board.message += " {} sank!".format(self.name)
 
-        # if self.damage == [functions.HIT] * self.length:
-        #     guess_board.status += " You sank my {}.".format(self.name)
-        #     self.sank = True
+    def ship_sunk(self):
+        """Test to see if a ship is sunk."""
+        for i in range(self.length):
+            if self.damage[i].damage == functions.MISS:
+                return False
+
+        return True
 
 
 class Battleship(Ship):

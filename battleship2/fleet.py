@@ -39,3 +39,11 @@ class Fleet ():
         """Set damage for each member of the fleet."""
         for piece in self.ships:
             piece.set_damage(guess, guess_board)
+
+    def all_ships_sank(self):
+        """Check to see if any ships are still afloat."""
+        for piece in self.ships:
+            if not piece.sank:
+                return False
+
+        return True
