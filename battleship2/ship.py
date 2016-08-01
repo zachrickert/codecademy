@@ -13,7 +13,7 @@ class Ship():
         self.length = length
         self.letter = name[0].upper()
         self.sank = False
-        self.damage = ['O'] * length
+        self.damage = [functions.EMPTY] * length
 
     def __str__(self):
         """Print ship type and damage."""
@@ -29,7 +29,7 @@ class Ship():
         if self.check_for_ships(board, location):
             self.place_ship(board, location)
         else:
-            print ('Sorry, that would cause your ships to overlap.')
+            board.message = 'Sorry, that would cause your ships to overlap.'
             self.set_location(board)
 
     def set_location_auto(self, board):
@@ -67,13 +67,13 @@ class Ship():
     def location_input(self, board):
         """Gather the starting location of the ship."""
         functions.clear()
-        print (board)
+        board.print_board()
         print("Place your {} - length {}.".format(self.name, self.length))
         start = input("Please input the upper left corner of the ship: ")
         start = Guess(start)
         if start.row > board.rows - self.length:
             if start.column > board.columns - self.length:
-                print("Sorry, your ship is off the map.")
+                board.message = "Sorry, your ship is off the map."
                 start, direction = self.location_input(board)
             else:
                 direction = 'h'
@@ -100,7 +100,7 @@ class Ship():
                 print('GAME ERROR')
                 return False
 
-            if(board.status[row][column] != 'O'):
+            if(board.status[row][column] != functions.EMPTY):
                     return False
 
         return True
@@ -118,13 +118,12 @@ class Ship():
             board.status[row][column] = self.letter
             current_position = functions.rc_to_str(row, column)
             self.damage[i] = Guess(current_position)
-            # print(row, column, current_position, self.damage[i])
 
         if board.name == "Computer":
             answer = "y"
         else:
             functions.clear()
-            print(board)
+            board.print_board()
             answer = ""
 
         while not (answer == 'y' or answer == 'n'):
@@ -139,7 +138,7 @@ class Ship():
                     row = location[0].row
                     column = location[0].column + i
 
-                board.status[row][column] = 'O'
+                board.status[row][column] = functions.EMPTY
             self.set_location(board)
 
 

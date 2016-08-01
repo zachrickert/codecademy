@@ -1,6 +1,8 @@
 """Board class for the battleship game."""
 import functions
 
+from guess import Guess
+
 
 class Board():
     """Board class for battleship game."""
@@ -10,15 +12,20 @@ class Board():
         self.rows = 10
         self.columns = 10
         self.name = name
+        self.message = ""
 
         self.status = []
         for row in range(self.rows):
-            self.status.append(["O"] * self.columns)
+            self.status.append([functions.EMPTY] * self.columns)
 
-    def __str__(self):
-        """Print the currnet status of the game."""
-        self.print_board()
-        return ""
+    # def __str__(self):
+    #     """Print the currnet status of the game."""
+    #     self.print_board()
+    #     return ""
+
+    def message_reset(self):
+        """Reset message to a blank line."""
+        self.message = ""
 
     def print_board(self):
         """Print the current status of the game."""
@@ -45,3 +52,16 @@ class Board():
                           end="")
             if column == self.columns - 1:
                 print()
+        print()
+        if self.message != "":
+            print(self.message)
+            self.message_reset()
+
+    def check_damage(self, guess, guess_board):
+        """Check to see if a ship has taken damage."""
+        if self.status[guess.row][guess.column] == functions.EMPTY:
+            self.message = guess.position() + " - You missed."
+            guess_board.status[guess.row][guess.column] = functions.MISS
+        else:
+            self.message = guess.position() + " - HIT!!!"
+            guess_board.status[guess.row][guess.column] = functions.HIT

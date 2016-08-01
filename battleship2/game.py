@@ -1,7 +1,10 @@
 """Game class for the battleship game."""
 
+import functions
+
 from board import Board
 from fleet import Fleet
+from guess import Guess
 
 """Battleship versus an AI opponet.
 1. Create a board
@@ -19,26 +22,41 @@ class Game():
         """Initialize the game."""
         self.level = 'normal'
         self.name = input("Please enter your name: ")
+        self.done = False
 
         self.user_board = Board(self.name)
         self.computer_board = Board("Computer")
+        self.guess_board = Board("Guesses")
         self.user_fleet = Fleet()
         self.user_fleet.set_fleet(self.user_board)
         self.computer_fleet = Fleet()
         self.computer_fleet.set_fleet_auto(self.computer_board)
+        self.play_game()
 
-    def __str__(self):
-        """Print the current game status."""
-        self.print_game_status()
-        return ""
+    # def __str__(self):
+    #     """Print the current game status."""
+    #     self.print_game_status()
+    #     return ""
 
     def print_game_status(self):
         """Print the current game status."""
-        print(myGame.user_board)
-        print('=' * myGame.user_board.columns * 4)
-        print(myGame.computer_board)
+        self.guess_board.print_board()
+        # self.computer_board.print_board()
+        print('=' * self.user_board.columns * 4)
+        self.user_board.print_board()
 
+    def play_game(self):
+        """Battleship Game mechanics."""
+        turn_count = 0
+        while not self.done:
+            functions.clear()
+            self.print_game_status()
+            user_guess = input("Please Enter a Guess: ")
+            user_guess = Guess(user_guess)
+            self.computer_board.check_damage(user_guess, self.guess_board)
+            turn_count += 1
+            if turn_count >= 5:
+                self.done = True
 
 myGame = Game()
-print(myGame)
-print(myGame.user_fleet)
+# print(myGame.user_fleet)
