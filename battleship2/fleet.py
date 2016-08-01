@@ -34,3 +34,8 @@ class Fleet ():
         """Set up fleet automatically."""
         for piece in self.ships:
             piece.set_location_auto(board)
+
+    def set_damage(self, guess, guess_board):
+        """Set damage for each member of the fleet."""
+        for piece in self.ships:
+            piece.set_damage(guess, guess_board)

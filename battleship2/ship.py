@@ -19,7 +19,10 @@ class Ship():
         """Print ship type and damage."""
         total_damage = ""
         for i in range(self.length):
-            total_damage = total_damage + " " + (self.damage[i].position())
+            position_damage = self.damage[i].damage
+            # delete next line in final
+            position_damage += self.damage[i].position()
+            total_damage = total_damage + " " + (position_damage)
         str = "{} - [{}]".format(self.name, total_damage)
         return str
 
@@ -140,6 +143,19 @@ class Ship():
 
                 board.status[row][column] = functions.EMPTY
             self.set_location(board)
+
+    def set_damage(self, guess, guess_board):
+        """Set damage on ships."""
+        if guess in self.damage:
+            self.damage[self.damage.index(guess)].damage = functions.HIT
+            print ('Damage taken!')
+        print(self)
+        print(self.damage)
+        print(guess)
+
+        # if self.damage == [functions.HIT] * self.length:
+        #     guess_board.status += " You sank my {}.".format(self.name)
+        #     self.sank = True
 
 
 class Battleship(Ship):

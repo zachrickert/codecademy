@@ -33,11 +33,6 @@ class Game():
         self.computer_fleet.set_fleet_auto(self.computer_board)
         self.play_game()
 
-    # def __str__(self):
-    #     """Print the current game status."""
-    #     self.print_game_status()
-    #     return ""
-
     def print_game_status(self):
         """Print the current game status."""
         self.guess_board.print_board()
@@ -48,15 +43,17 @@ class Game():
     def play_game(self):
         """Battleship Game mechanics."""
         turn_count = 0
+        print(self.computer_fleet)
         while not self.done:
             functions.clear()
             self.print_game_status()
             user_guess = input("Please Enter a Guess: ")
             user_guess = Guess(user_guess)
-            self.computer_board.check_damage(user_guess, self.guess_board)
+            self.computer_board.check_damage(user_guess,
+                                             self.guess_board,
+                                             self.computer_fleet)
             turn_count += 1
-            if turn_count >= 5:
+            if turn_count >= 100:
                 self.done = True
 
 myGame = Game()
-# print(myGame.user_fleet)
