@@ -9,6 +9,7 @@ class Fleet ():
     def __init__(self):
         """Initialize the fleet."""
         self.sunk = False
+        self.quit_flag = False
         self.ships = []
         battleship = ship.Battleship()
         submarine = ship.Submarine()
@@ -29,6 +30,9 @@ class Fleet ():
         """Set up fleet."""
         for piece in self.ships:
             piece.set_location(board)
+            if piece.quit_flag:
+                self.quit_flag = True
+                break
 
     def set_fleet_auto(self, board):
         """Set up fleet automatically."""

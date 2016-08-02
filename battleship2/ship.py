@@ -14,14 +14,13 @@ class Ship():
         self.letter = name[0].upper()
         self.sank = False
         self.damage = [functions.EMPTY] * length
+        self.quit_flag = False
 
     def __str__(self):
         """Print ship type and damage."""
         total_damage = ""
         for i in range(self.length):
             position_damage = self.damage[i].damage
-            # delete next line in final
-            position_damage += self.damage[i].position()
             total_damage = total_damage + " " + (position_damage)
         str = "{} - [{}]".format(self.name, total_damage)
         return str
@@ -29,11 +28,13 @@ class Ship():
     def set_location(self, board):
         """Set location for a ship on the board."""
         location = self.location_input(board)
-        if self.check_for_ships(board, location):
-            self.place_ship(board, location)
-        else:
-            board.message = 'Sorry, that would cause your ships to overlap.'
-            self.set_location(board)
+        self.quit_flag = location[0].quit_flag
+        if not self.quit_flag:
+            if self.check_for_ships(board, location):
+                self.place_ship(board, location)
+            else:
+                board.message = 'That would cause your ships to overlap.'
+                self.set_location(board)
 
     def set_location_auto(self, board):
         """Automatically sets the location of the ships."""
@@ -74,7 +75,13 @@ class Ship():
         print("Place your {} - length {}.".format(self.name, self.length))
         start = input("Please input the upper left corner of the ship: ")
         start = Guess(start)
-        if start.row > board.rows - self.length:
+        if start.quit_flag:
+            return (start, 'quit')
+
+        if start.row >= board.rows or start.column >= board.columns:
+            board.message = "Sorry, your ship is off the map."
+            start, direction = self.location_input(board)
+        elif start.row > board.rows - self.length:
             if start.column > board.columns - self.length:
                 board.message = "Sorry, your ship is off the map."
                 start, direction = self.location_input(board)
